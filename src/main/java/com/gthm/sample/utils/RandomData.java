@@ -15,16 +15,16 @@ public class RandomData {
 
     static AtomicInteger integer = new AtomicInteger(0);
 
-    public static List<Movies> getMovies() {
+    public static List<Movies> getMovies(int LENGTH) {
 
         List<Movies> movieList = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < LENGTH; i++) {
 
             Movies movie = new Movies();
             movie.setId(integer.getAndIncrement());
             movie.setMovieName(UUID.randomUUID().toString());
-            movie.setYear(Long.valueOf(LocalDate.now().getYear()));
+            movie.setYear(Long.valueOf(LocalDate.now().getYear() - i));
 
             movieList.add(movie);
         }

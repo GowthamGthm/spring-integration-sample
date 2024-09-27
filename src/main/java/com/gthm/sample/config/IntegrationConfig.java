@@ -23,14 +23,14 @@ import java.util.Optional;
 public class IntegrationConfig {
 
 
-    @InboundChannelAdapter( channel = "movie-receiver" , poller=@Poller(fixedRate = "5000"))
+//    @InboundChannelAdapter( channel = "movie-receiver" , poller=@Poller(fixedRate = "5000"))
+//    @InboundChannelAdapter( channel = "movie-receiver")
     public List<Movies> moviesInbound() {
         log.info("======================= FIRST STEP ====================");
-        return RandomData.getMovies();
+        return RandomData.getMovies(10);
     }
 
-
-    @Transformer(inputChannel = "movie-receiver" , outputChannel = "movie-transformer")
+//    @Transformer(inputChannel = "movie-receiver" , outputChannel = "movie-transformer")
     public List<Movies> receiverChannel(List<Movies> movies) {
 
         log.info("======================= SECOND STEP ====================");
@@ -47,7 +47,7 @@ public class IntegrationConfig {
     }
 
 
-    @ServiceActivator(inputChannel = "movie-transformer" , outputChannel = "movie-transformer-3")
+//    @ServiceActivator(inputChannel = "movie-transformer" , outputChannel = "movie-transformer-3")
     public List<Movies> movieSaver(List<Movies> movies) {
 
         try {
